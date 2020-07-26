@@ -1,6 +1,8 @@
 "tukapai's vim settings
 
+"=========================
 "Basic Settings
+"=========================
 syntax on "enable Syntax
 filetype plugin indent on "auto indent base filetype
 set nu "set line number
@@ -17,7 +19,10 @@ packloadall "load all plugins
 silent! helptags ALL "loading all help document
 
 "edit settings
-set foldmethod "set foldmethiod
+"set foldmethod "set foldmethiod
+
+"set tabline
+set showtabline=2
 
 "set undo pamanency
 set undofile
@@ -26,6 +31,31 @@ if !isdirectory(expand("$HOME/.vim/undodir"))
 endif
 set undodir=$HOME/.vim/undodir
 
+let g:lightline = {
+      \ 'active':{
+      \   'left': [[ 'cwd'], ['tabs']],
+      \   'right': [['close'], ['gitbranch','wifi','battery']
+      \ },
+      \ 'component_function': {
+      \   'cwd': 'getcwd',
+      \   'gitbranch': 'gitbranch#name',
+      \   'wifi': 'wifi#component',
+      \   'battery': 'battery#component'
+      \ },
+      \}
+
 call plug#begin()
 
+"mastering-vim set
+ Plug 'preservim/nerdtree'
+ Plug 'tpope/vim-vinegar'
+ Plug 'ctrlpvim/ctrlp.vim'
+
+"light.vim set
+ Plug 'itchyny/lightline.vim'
+ Plug 'itchyny/vim-gitbranch'
+ Plug 'lambdalisue/wifi.vim'
+ Plug 'lambdalisue/battery.vim'
+
 call plug#end()
+
